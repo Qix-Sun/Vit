@@ -1,0 +1,27 @@
+### model
+model_name_or_path: ./LLAVA
+adapter_name_or_path: ./saves/llava_SAHZU_train_17200/lora/sft
+image_max_pixels: 30720
+video_max_pixels: 16384
+
+### method
+stage: sft
+do_predict: true
+finetuning_type: lora
+
+### dataset
+eval_dataset: Llava_SAHZU_test_4300
+template: llava_next_qwen
+cutoff_len: 10000
+max_samples: 4300
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: saves/llava_SAHZU_test_4300
+overwrite_output_dir: true
+
+### eval
+per_device_eval_batch_size: 1
+predict_with_generate: true
+ddp_timeout: 180000000
